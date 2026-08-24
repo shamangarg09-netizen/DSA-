@@ -1,0 +1,123 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[100], n, choice;
+
+    cout << "Enter the number of elements: ";
+    cin >> n;
+
+    cout << "Enter the elements of the unordered array:\n";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    do {
+        cout << "\n----- MENU -----\n";
+        cout << "1. Insert Element\n";
+        cout << "2. Delete Element\n";
+        cout << "3. Search Element\n";
+        cout << "4. Display Array\n";
+        cout << "5. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+
+        case 1: {
+            int element, pos;
+
+            cout << "Enter position (0 to " << n << "): ";
+            cin >> pos;
+
+            if (pos < 0 || pos > n) {
+                cout << "Invalid Position!\n";
+                break;
+            }
+
+            cout << "Enter element to insert: ";
+            cin >> element;
+
+            for (int i = n; i > pos; i--) {
+                arr[i] = arr[i - 1];
+            }
+
+            arr[pos] = element;
+            n++;
+
+            cout << "Element inserted successfully.\n";
+            break;
+        }
+
+        case 2: {
+            int pos;
+
+            if (n == 0) {
+                cout << "Array is empty.\n";
+                break;
+            }
+
+            cout << "Enter position to delete (0 to " << n - 1 << "): ";
+            cin >> pos;
+
+            if (pos < 0 || pos >= n) {
+                cout << "Invalid Position!\n";
+                break;
+            }
+
+            for (int i = pos; i < n - 1; i++) {
+                arr[i] = arr[i + 1];
+            }
+
+            n--;
+
+            cout << "Element deleted successfully.\n";
+            break;
+        }
+
+        case 3: {
+            int key;
+            bool found = false;
+
+            cout << "Enter element to search: ";
+            cin >> key;
+
+            for (int i = 0; i < n; i++) {
+                if (arr[i] == key) {
+                    cout << "Element found at index " << i << ".\n";
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+                cout << "Element not found.\n";
+
+            break;
+        }
+
+        case 4: {
+            if (n == 0) {
+                cout << "Array is empty.\n";
+            } else {
+                cout << "Array elements: ";
+                for (int i = 0; i < n; i++) {
+                    cout << arr[i] << " ";
+                }
+                cout << endl;
+            }
+            break;
+        }
+
+        case 5:
+            cout << "Exiting program...\n";
+            break;
+
+        default:
+            cout << "Invalid Choice!\n";
+        }
+
+    } while (choice != 5);
+
+    return 0;
+}
