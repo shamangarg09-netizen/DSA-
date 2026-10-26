@@ -11,7 +11,7 @@ int queueSize = 0;
 bool enqueue(int element) {
     if (queueSize == capacity) {
         return false;
-    }
+  }
 
     arr[rearIndex] = element;
     rearIndex = (rearIndex + 1) % capacity;
